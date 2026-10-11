@@ -449,6 +449,63 @@
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 8px;
 }
+  
+    /* Responsive albums + full-screen photo viewer */
+    .gallery-page { max-width: 1180px; margin: 0 auto; padding: 0 18px 60px; }
+    .gallery-intro { text-align: center; padding: 54px 12px 38px; }
+    .intro-kicker { display: inline-flex; gap: 9px; align-items: center; color: #00d2ff; font-size: .76rem; font-weight: 700; letter-spacing: 1.7px; }
+    .gallery-intro h1 { margin: 13px 0 10px; color: #fff; font-size: clamp(1.7rem, 5vw, 2.55rem); line-height: 1.35; }
+    .gallery-intro p { color: var(--text-muted); max-width: 620px; margin: 0 auto; line-height: 1.8; font-size: .98rem; }
+    .gallery-stats { margin-top: 18px; color: #b8c5d3; font-size: .85rem; }
+    .gallery-stats i { color: #00d2ff; margin-right: 6px; }
+    .gallery-stats span { margin: 0 8px; color: #00d2ff; }
+    .album-list { display: grid; gap: 28px; }
+    .gallery-category { min-width: 0; margin: 0; padding: 20px; text-align: left; border: 1px solid rgba(139, 148, 158, .2); border-radius: 18px; background: linear-gradient(145deg, rgba(22,27,34,.96), rgba(13,20,31,.96)); box-shadow: 0 12px 28px rgba(0,0,0,.16); }
+    .album-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 17px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
+    .album-label { display: block; margin-bottom: 6px; color: #00d2ff; font-size: .68rem; font-weight: 700; letter-spacing: 1.5px; }
+    .album-heading h2 { margin: 0; color: #f0f6fc; font-size: clamp(1rem, 2.5vw, 1.25rem); line-height: 1.65; font-weight: 600; }
+    .photo-count { flex: 0 0 auto; color: #9eabb9; font-size: .75rem; white-space: nowrap; }
+    .photo-count i { color: #00d2ff; margin-right: 4px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; margin: 0; }
+    .gallery-item { position: relative; display: block; width: 100%; min-width: 0; aspect-ratio: 4 / 3; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.09); border-radius: 11px; background: #0b1019; cursor: zoom-in; text-align: left; }
+    .gallery-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease, opacity .3s ease; }
+    .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.06); }
+    .photo-zoom { position: absolute; right: 8px; bottom: 8px; width: 29px; height: 29px; display: grid; place-items: center; color: white; background: rgba(0,0,0,.65); border: 1px solid rgba(255,255,255,.28); border-radius: 50%; opacity: .95; font-size: .75rem; }
+    .gallery-item:focus-visible { outline: 2px solid #00d2ff; outline-offset: 3px; }
+    .lightbox { position: fixed; inset: 0; z-index: 3000; display: none; align-items: center; justify-content: center; padding: 58px 56px 70px; background: rgba(3,7,13,.96); backdrop-filter: blur(12px); }
+    .lightbox.open { display: flex; }
+    .lightbox-figure { display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 100%; max-height: 100%; margin: 0; }
+    .lightbox-figure img { display: block; max-width: min(100%, 1500px); max-height: calc(100dvh - 130px); width: auto; height: auto; object-fit: contain; border-radius: 5px; box-shadow: 0 15px 60px rgba(0,0,0,.5); }
+    .lightbox-figure figcaption { margin-top: 12px; color: #e4edf7; text-align: center; font-size: .9rem; line-height: 1.6; }
+    .lightbox-close, .lightbox-nav { position: absolute; display: grid; place-items: center; color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 50%; cursor: pointer; transition: background .2s ease; }
+    .lightbox-close:hover, .lightbox-nav:hover { background: #007fc7; }
+    .lightbox-close { top: 17px; right: 18px; width: 43px; height: 43px; font-size: 1.25rem; }
+    .lightbox-nav { top: 50%; width: 43px; height: 43px; transform: translateY(-50%); font-size: 1rem; }
+    .lightbox-prev { left: 14px; }
+    .lightbox-next { right: 14px; }
+    .lightbox-counter { position: absolute; bottom: 20px; left: 0; right: 0; color: #b7c5d5; text-align: center; font-size: .85rem; }
+    body.lightbox-open { overflow: hidden; }
+    @media (min-width: 900px) { .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 12px; } }
+    @media (max-width: 600px) {
+      .gallery-page { padding: 0 10px 35px; }
+      .gallery-intro { padding: 34px 7px 25px; }
+      .gallery-intro p { font-size: .88rem; }
+      .album-list { gap: 16px; }
+      .gallery-category { padding: 13px; border-radius: 14px; }
+      .album-heading { align-items: flex-start; margin-bottom: 12px; padding-bottom: 10px; }
+      .album-heading h2 { font-size: .96rem; line-height: 1.65; }
+      .photo-count { padding-top: 17px; font-size: .67rem; }
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+      .gallery-item { aspect-ratio: 1 / 1; border-radius: 7px; }
+      .photo-zoom { right: 4px; bottom: 4px; width: 23px; height: 23px; font-size: .65rem; }
+      .lightbox { padding: 65px 8px 65px; }
+      .lightbox-figure img { max-width: 100%; max-height: calc(100dvh - 150px); }
+      .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; }
+      .lightbox-nav { width: 36px; height: 36px; font-size: .85rem; background: rgba(10,15,24,.72); }
+      .lightbox-prev { left: 7px; }
+      .lightbox-next { right: 7px; }
+    }
+
   </style>
 </head>
 <body>
@@ -475,553 +532,555 @@
     </ul>
 </nav>
 
-<main class="section-container">
-    <h2>ඡායාරූප සහ වීඩියෝ එකතුව</h2>
-    <p>විද්‍යාලයේ විශේෂ අවස්ථා සහ උත්සව වල ඡායාරූප හා වීඩියෝ.</p>
-
-    <main class="section-container">
-    <h2>ඡායාරූප  එකතුව </h2>
-    <p>විද්‍යාලයේ විවිධ අවස්ථා වල ඡායාරූප කාණ්ඩ අනුව.</p>
-    
-     <!--[2025] 6 ශ්‍රේණියට සිසුන් ඇතුළත් කර ගැනීමේ උත්සවය.-->
-     <div class="gallery-category">
-        <h3>[2025] 6 ශ්‍රේණියට සිසුන් ඇතුළත් කර ගැනීමේ උත්සවය.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="25g6n1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g6n2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g6n3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g6n4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g6n5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-     <!-- 2025.01.30 දින 1 ශ්‍රේණියට අපේ පාසලට ආ පුංචි මල් කැකුළු .-->
-     <div class="gallery-category">
-        <h3>  2025.01.30 දින 1 ශ්‍රේණියට අපේ පාසලට ආ පුංචි මල් කැකුළු.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="25g1n1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g1n2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g1n3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g1n4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="25g1n5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-               <!-- ලෝකළමා දිනය 2024 .-->
-     <div class="gallery-category">
-        <h3> ලෝකළමා දිනය 2024.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="24cd1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24cd2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24cd3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24cd4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24cd5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     <div class="gallery-category">
-        <h3> ප්‍රාථමික ⁣ශ්‍රේණියේ දරුවන් ගේ ප්‍රායෝගික ක්‍රියාකාරකම්.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="pgpc1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-               <!--ප්‍රාථමික ⁣ශ්‍රේණියේ දරුවන් ගේ ප්‍රායෝගික ක්‍රියාකාරකම්.-->
-     <div class="gallery-category">
-        <h3> ප්‍රාථමික ⁣ශ්‍රේණියේ දරුවන් ගේ ප්‍රායෝගික ක්‍රියාකාරකම්.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="pgpc1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="pgpc5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-
-           <!--2024.07.27 .දින සිප් සරු වැඩසටහනට සහභාගි වූ අවස්ථාව.-->
-     <div class="gallery-category">
-        <h3> 2024.07.27 .දින සිප් සරු වැඩසටහනට සහභාගි වූ අවස්ථාව.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="ssw1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ssw2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ssw3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ssw4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ssw5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-               <!--2024.07.28 දින ගිනිගත්හේන මධ්‍ය මහා විද්‍යාලයේ දී දෙරණ මාධ්‍ය ජාල⁣ය විසින් පැවැත් වූ වැඩමුලුවට සහභාගි වූ අපේ දූ දරුවන්.-->
-     <div class="gallery-category">
-        <h3> 2024.07.28 දින ගි.ම.වි. දී දෙරණ මාධ්‍ය ජාල⁣ය විසින් පැවැත් වූ වැඩමුලුවට සහභාගි වූ අපේ දූ දරුවන්.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="gccd1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gccd2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gccd3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gccd4.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-
-           <!--2024.07.17 දින පාසලේ ගොඩනැගිලිවල තීන්ත ආලේප කිරීම හා අවට පරිසරය පිරිසිදු කිරීම .-->
-     <div class="gallery-category">
-        <h3> 2024.07.17 දින පාසලේ ගොඩනැගිලිවල තීන්ත ආලේප කිරීම හා අවට පරිසරය පිරිසිදු කිරීම .</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="gpk1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gpk2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gpk3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gpk4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="gpk5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-
-        <!-- PTS ප්‍රායෝගික ඇගයීමක් සිදුකරන අවස්ථාවක්.-->
-     <div class="gallery-category">
-        <h3> PTS ප්‍රායෝගික ඇගයීමක් සිදුකරන අවස්ථාවක්.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="ptspractical1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspractical2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspractical3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspractical4.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspractical5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-
-
-     <!-- PTS විශය යටතේ පෝෂණ රොටී සෑදීම .-->
-     <div class="gallery-category">
-        <h3> PTS විශය යටතේ පෝෂණ රොටී සෑදීම .</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="ptspr1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspr2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspr3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspr4.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="ptspr5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-
-         <!--පොසොන් බැති ගී සරණිය .(2024)-->
-     <div class="gallery-category">
-        <h3>පොසොන් බැති ගී සරණිය .(2024)</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="24pbs1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs4.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs6.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs7.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24pbs8.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
+<main class="gallery-page">
+  <section class="gallery-intro">
+    <span class="intro-kicker"><i class="fa-solid fa-camera-retro"></i> KELANIGAMA COLLEGE</span>
+    <h1>ඡායාරූප ගැලරිය</h1>
+    <p>විද්‍යාලයේ මතකයන්, උත්සව සහ විශේෂ අවස්ථා — ඇල්බම අනුව බලන්න.</p>
+    <div class="gallery-stats"><i class="fa-regular fa-images"></i> ඇල්බම 21 ක් <span>•</span> ඡායාරූප 106 ක්</div>
+  </section>
+  <div class="album-list">
+    <section class="gallery-category" aria-labelledby="album-title-1">
+      <div class="album-heading"><div><span class="album-label">ALBUM 01</span><h2 id="album-title-1">[2025] 6 ශ්‍රේණියට සිසුන් ඇතුළත් කර ගැනීමේ උත්සවය.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="images/photo1.jpg" data-alt="School Event" aria-label="ඡායාරූපය විශාල කර බලන්න: School Event">
+          <img src="images/photo1.jpg" alt="School Event" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="images/photo2.jpg" data-alt="School Event" aria-label="ඡායාරූපය විශාල කර බලන්න: School Event">
+          <img src="images/photo2.jpg" alt="School Event" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="images/photo3.jpg" data-alt="School Event" aria-label="ඡායාරූපය විශාල කර බලන්න: School Event">
+          <img src="images/photo3.jpg" alt="School Event" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="images/photo4.jpg" data-alt="School Event" aria-label="ඡායාරූපය විශාල කර බලන්න: School Event">
+          <img src="images/photo4.jpg" alt="School Event" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="images/photo5.jpg" data-alt="School Event" aria-label="ඡායාරූපය විශාල කර බලන්න: School Event">
+          <img src="images/photo5.jpg" alt="School Event" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
       </div>
- 
-     <!-- සිංහල දමිළ අලුත් අවුරුදු උත්සවය සැමරීම.(2024)-->
-     <div class="gallery-category">
-        <h3> සිංහල දමිළ අලුත් අවුරුදු උත්සවය සැමරීම.(2024)</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="24ny1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24ny2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24ny3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24ny4.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24ny5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
- 
-     <!-- වෙසක් පොහොය සමගාමීව පාසලේ දරු දැරියන් සිල් ගන්නා ලදි.(2024)-->
-     <div class="gallery-category">
-        <h3>වෙසක් පොහොය සමගාමීව පාසලේ දරු දැරියන් සිල් ගන්නා ලදි.(2024)</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="24vd1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24vd2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24vd3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="24vd5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-  
-     <!--වෙසක් පත් නිර්මාණය හා පහන් කූඩූ නිර්මාණයේ ජයග්‍රහකයන්ට ත්‍යාග හා සහතිකපත් ලබාදීම.-->
-     <div class="gallery-category">
-        <h3> වෙසක් පත් නිර්මාණය හා පහන් කූඩූ නිර්මාණයේ ජයග්‍රහකයන්ට ත්‍යාග හා සහතිකපත් ලබාදීම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="vdsp1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="vdsp2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="vdsp3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="vdsp4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="vdsp5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
- 
-     <!-- 2024.03.14 අන්තර් ජාතික ගණිත දිනය සැමරුම.-->
-     <div class="gallery-category">
-        <h3>2024.03.14 අන්තර් ජාතික ගණිත දිනය සැමරුම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="nmd1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="nmd2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="nmd3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="nmd4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="nmd5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-
-      <!-- 3 ශ්‍රේණිය සිසුන් හදුනා ගැනීමේ වැඩ සටහටනේ  ප්‍රදර්ශනය පැවැත්වීම.-->
-     <div class="gallery-category">
-        <h3> 3 ශ්‍රේණිය සිසුන් හදුනා ගැනීමේ වැඩ සටහටනේ ප්‍රදර්ශනය පැවැත්වීම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="3hp1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="3hp2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="3hp3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="3hp4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="3hp5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-
-     <!-- 4‍,5 ශ්‍රේණිවල සිසුන් උදෑසන සූර්ය නමස්කාරයේ යෙදීම.-->
-     <div class="gallery-category">
-        <h3>4‍,5 ශ්‍රේණිවල සිසුන් උදෑසන සූර්ය නමස්කාරයේ යෙදීම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="45us1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="45us2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="45us3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="45us4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="45us5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-     </div>
-
-     <!--1‍,2‍,3‍ශ්‍රේණිවල දරුවන් විසින් විහාරස්ථානයට ගොස් ආගමික වතාවත් වල නිරතවීම හා විහාරස්ථානය පිරිසිදු කිරීමේ නිරත වීම.-->
-     <div class="gallery-category">
-        <h3>1‍,2‍,3‍ ශ්‍රේණිවල දරුවන් විසින් විහාරස්ථානයට ගොස් ආගමික වතාවත් වල නිරතවීම හා විහාරස්ථානය පිරිසිදු කිරීමේ නිරත වීම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="123gp1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="123g2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="123g3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="123g4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="123g5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-2">
+      <div class="album-heading"><div><span class="album-label">ALBUM 02</span><h2 id="album-title-2">[2025] 6 ශ්‍රේණියට සිසුන් ඇතුළත් කර ගැනීමේ උත්සවය.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="25g6n1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="25g6n1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g6n2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="25g6n2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g6n3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="25g6n3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g6n4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="25g6n4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g6n5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="25g6n5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
       </div>
-
-     <!-- 2024.03.02 දින ශිෂ්‍ය නායක නිල ලාංඡන පැළදීමේ උත්සවය -->
-     <div class="gallery-category">
-        <h3>2024.03.02 දින ශිෂ්‍ය නායක නිල ලාංඡන පැළදීමේ උත්සවය</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="np1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="np2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="np3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="np4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="np5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-3">
+      <div class="album-heading"><div><span class="album-label">ALBUM 03</span><h2 id="album-title-3">2025.01.30 දින 1 ශ්‍රේණියට අපේ පාසලට ආ පුංචි මල් කැකුළු.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="25g1n1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="25g1n1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g1n2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="25g1n2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g1n3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="25g1n3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g1n4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="25g1n4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="25g1n5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="25g1n5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
       </div>
-
-          <!-- පළමු කාණ්ඩය: 2024.02.22 දින එක ශ්‍රේණියට සිසුන් භාරගැනීම. -->
-    <div class="gallery-category">
-        <h3>2024.02.22 දින එක ශ්‍රේණියට සිසුන් භාරගැනීම.</h3>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="1gn1.jpg" alt="Sports Photo 1">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="1gn2.jpg" alt="Sports Photo 2">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="1gn3.jpg" alt="Sports Photo 3">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="1gn4.jpg" alt="Sports Photo 4">
-                <p class="gallery-caption"></p>
-            </div>
-            <div class="gallery-item">
-                <img src="1gn5.jpg" alt="Sports Photo 5">
-                <p class="gallery-caption"></p>
-            </div>
-        </div>
-    </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-4">
+      <div class="album-heading"><div><span class="album-label">ALBUM 04</span><h2 id="album-title-4">ලෝකළමා දිනය 2024.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="24cd1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="24cd1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24cd2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="24cd2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24cd3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24cd3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24cd4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="24cd4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24cd5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="24cd5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-5">
+      <div class="album-heading"><div><span class="album-label">ALBUM 05</span><h2 id="album-title-5">ප්‍රාථමික ⁣ශ්‍රේණියේ දරුවන් ගේ ප්‍රායෝගික ක්‍රියාකාරකම්.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="pgpc1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="pgpc1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="pgpc2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="pgpc3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="pgpc4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="pgpc5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-6">
+      <div class="album-heading"><div><span class="album-label">ALBUM 06</span><h2 id="album-title-6">ප්‍රාථමික ⁣ශ්‍රේණියේ දරුවන් ගේ ප්‍රායෝගික ක්‍රියාකාරකම්.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="pgpc1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="pgpc1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="pgpc2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="pgpc3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="pgpc4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="pgpc5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="pgpc5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-7">
+      <div class="album-heading"><div><span class="album-label">ALBUM 07</span><h2 id="album-title-7">2024.07.27 .දින සිප් සරු වැඩසටහනට සහභාගි වූ අවස්ථාව.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="ssw1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="ssw1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ssw2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="ssw2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ssw3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="ssw3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ssw4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="ssw4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ssw5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="ssw5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-8">
+      <div class="album-heading"><div><span class="album-label">ALBUM 08</span><h2 id="album-title-8">2024.07.28 දින ගි.ම.වි. දී දෙරණ මාධ්‍ය ජාල⁣ය විසින් පැවැත් වූ වැඩමුලුවට සහභාගි වූ අපේ දූ දරුවන්.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 4 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="gccd1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="gccd1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gccd2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="gccd2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gccd3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="gccd3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gccd4.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="gccd4.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-9">
+      <div class="album-heading"><div><span class="album-label">ALBUM 09</span><h2 id="album-title-9">2024.07.17 දින පාසලේ ගොඩනැගිලිවල තීන්ත ආලේප කිරීම හා අවට පරිසරය පිරිසිදු කිරීම .</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="gpk1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="gpk1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gpk2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="gpk2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gpk3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="gpk3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gpk4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="gpk4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="gpk5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="gpk5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-10">
+      <div class="album-heading"><div><span class="album-label">ALBUM 10</span><h2 id="album-title-10">PTS ප්‍රායෝගික ඇගයීමක් සිදුකරන අවස්ථාවක්.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="ptspractical1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="ptspractical1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspractical2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="ptspractical2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspractical3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="ptspractical3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspractical4.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="ptspractical4.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspractical5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="ptspractical5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-11">
+      <div class="album-heading"><div><span class="album-label">ALBUM 11</span><h2 id="album-title-11">PTS විශය යටතේ පෝෂණ රොටී සෑදීම .</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="ptspr1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="ptspr1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspr2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="ptspr2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspr3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="ptspr3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspr4.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="ptspr4.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="ptspr5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="ptspr5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-12">
+      <div class="album-heading"><div><span class="album-label">ALBUM 12</span><h2 id="album-title-12">පොසොන් බැති ගී සරණිය .(2024)</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 8 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="24pbs1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="24pbs1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="24pbs2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24pbs3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs4.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24pbs4.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="24pbs5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs6.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24pbs6.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs7.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24pbs7.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24pbs8.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="24pbs8.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-13">
+      <div class="album-heading"><div><span class="album-label">ALBUM 13</span><h2 id="album-title-13">සිංහල දමිළ අලුත් අවුරුදු උත්සවය සැමරීම.(2024)</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="24ny1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="24ny1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24ny2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="24ny2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24ny3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24ny3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24ny4.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24ny4.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24ny5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="24ny5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-14">
+      <div class="album-heading"><div><span class="album-label">ALBUM 14</span><h2 id="album-title-14">වෙසක් පොහොය සමගාමීව පාසලේ දරු දැරියන් සිල් ගන්නා ලදි.(2024)</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 4 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="24vd1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="24vd1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24vd2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="24vd2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24vd3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="24vd3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="24vd5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="24vd5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-15">
+      <div class="album-heading"><div><span class="album-label">ALBUM 15</span><h2 id="album-title-15">වෙසක් පත් නිර්මාණය හා පහන් කූඩූ නිර්මාණයේ ජයග්‍රහකයන්ට ත්‍යාග හා සහතිකපත් ලබාදීම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="vdsp1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="vdsp1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="vdsp2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="vdsp2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="vdsp3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="vdsp3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="vdsp4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="vdsp4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="vdsp5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="vdsp5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-16">
+      <div class="album-heading"><div><span class="album-label">ALBUM 16</span><h2 id="album-title-16">2024.03.14 අන්තර් ජාතික ගණිත දිනය සැමරුම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="nmd1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="nmd1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="nmd2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="nmd2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="nmd3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="nmd3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="nmd4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="nmd4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="nmd5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="nmd5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-17">
+      <div class="album-heading"><div><span class="album-label">ALBUM 17</span><h2 id="album-title-17">3 ශ්‍රේණිය සිසුන් හදුනා ගැනීමේ වැඩ සටහටනේ ප්‍රදර්ශනය පැවැත්වීම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="3hp1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="3hp1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="3hp2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="3hp2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="3hp3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="3hp3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="3hp4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="3hp4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="3hp5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="3hp5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-18">
+      <div class="album-heading"><div><span class="album-label">ALBUM 18</span><h2 id="album-title-18">4‍,5 ශ්‍රේණිවල සිසුන් උදෑසන සූර්ය නමස්කාරයේ යෙදීම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="45us1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="45us1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="45us2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="45us2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="45us3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="45us3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="45us4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="45us4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="45us5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="45us5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-19">
+      <div class="album-heading"><div><span class="album-label">ALBUM 19</span><h2 id="album-title-19">1‍,2‍,3‍ ශ්‍රේණිවල දරුවන් විසින් විහාරස්ථානයට ගොස් ආගමික වතාවත් වල නිරතවීම හා විහාරස්ථානය පිරිසිදු කිරීමේ නිරත වීම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="123gp1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="123gp1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="123g2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="123g2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="123g3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="123g3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="123g4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="123g4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="123g5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="123g5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-20">
+      <div class="album-heading"><div><span class="album-label">ALBUM 20</span><h2 id="album-title-20">2024.03.02 දින ශිෂ්‍ය නායක නිල ලාංඡන පැළදීමේ උත්සවය</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="np1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="np1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="np2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="np2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="np3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="np3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="np4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="np4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="np5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="np5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="gallery-category" aria-labelledby="album-title-21">
+      <div class="album-heading"><div><span class="album-label">ALBUM 21</span><h2 id="album-title-21">2024.02.22 දින එක ශ්‍රේණියට සිසුන් භාරගැනීම.</h2></div><span class="photo-count"><i class="fa-regular fa-image"></i> 5 photos</span></div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-full="1gn1.jpg" data-alt="Sports Photo 1" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 1">
+          <img src="1gn1.jpg" alt="Sports Photo 1" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="1gn2.jpg" data-alt="Sports Photo 2" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 2">
+          <img src="1gn2.jpg" alt="Sports Photo 2" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="1gn3.jpg" data-alt="Sports Photo 3" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 3">
+          <img src="1gn3.jpg" alt="Sports Photo 3" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="1gn4.jpg" data-alt="Sports Photo 4" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 4">
+          <img src="1gn4.jpg" alt="Sports Photo 4" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+        <button class="gallery-item" type="button" data-full="1gn5.jpg" data-alt="Sports Photo 5" aria-label="ඡායාරූපය විශාල කර බලන්න: Sports Photo 5">
+          <img src="1gn5.jpg" alt="Sports Photo 5" loading="lazy">
+          <span class="photo-zoom"><i class="fa-solid fa-expand"></i></span>
+        </button>
+      </div>
+    </section>
+  </div>
 </main>
 
-     <!-- Social Media Section -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="විශාල ඡායාරූප දසුන">
+  <button class="lightbox-close" type="button" aria-label="වසන්න"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lightbox-nav lightbox-prev" type="button" aria-label="පෙර ඡායාරූපය"><i class="fa-solid fa-chevron-left"></i></button>
+  <figure class="lightbox-figure"><img id="lightbox-image" src="" alt=""><figcaption id="lightbox-caption"></figcaption></figure>
+  <button class="lightbox-nav lightbox-next" type="button" aria-label="ඊළඟ ඡායාරූපය"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<!-- Social Media Section -->
      <div class="social-section" id="social">
      <h3>Connect With Our Digital Network</h3>
      <p>නිල සමාජ ජාල පිටු හරහා එකතු වන්න</p>
@@ -1031,7 +1090,7 @@
       <a href="https://www.tiktok.com/@kelanigamacollege" target="_blank" class="social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       <a href="https://www.youtube.com/@kelanigamacollege" target="_blank" class="social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="+94 71 580 0561" target="_blank" class="social-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="mailto:kelanigamac@gmail.com" target="_blank" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="mailto:kelanigamacollege@gmail.com" target="_blank" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://maps.app.goo.gl/1LHFGf1Mz2VHn3Cv9" target="_blank" class="social-icon" title="Location"><i class="fa-solid fa-location-dot"></i></a>
      </div>
      </div>
@@ -1040,13 +1099,46 @@
       <p>© 2026 CP/ H/ Kelanigama College. All Rights Reserved.</p>
      <p>Developed by <span>PAVITH PAMODHA</span></p>
      </footer>
-      <script>
-     const mobileMenu = document.getElementById('mobile-menu');
-     const navLinks = document.querySelector('.nav-links');
-
-     mobileMenu.addEventListener('click', () => {
-         navLinks.classList.toggle('active');
-     });
+<script>
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+  if (mobileMenu && navLinks) mobileMenu.addEventListener('click', () => navLinks.classList.toggle('active'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const photoButtons = Array.from(document.querySelectorAll('.gallery-item'));
+  let currentPhoto = 0, previousFocus = null;
+  function showPhoto(index) {
+    if (!photoButtons.length) return;
+    currentPhoto = (index + photoButtons.length) % photoButtons.length;
+    const button = photoButtons[currentPhoto], image = button.querySelector('img');
+    lightboxImage.src = button.dataset.full || image.src;
+    lightboxImage.alt = button.dataset.alt || image.alt || 'School photograph';
+    lightboxCaption.textContent = button.dataset.alt || image.alt || '';
+    lightboxCounter.textContent = `${currentPhoto + 1} / ${photoButtons.length}`;
+  }
+  function openImage(index) {
+    previousFocus = document.activeElement; showPhoto(index);
+    lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open'); lightbox.querySelector('.lightbox-close').focus();
+  }
+  function closeImage() {
+    lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open'); lightboxImage.src = '';
+    if (previousFocus && previousFocus.focus) previousFocus.focus();
+  }
+  photoButtons.forEach((button, index) => button.addEventListener('click', () => openImage(index)));
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeImage);
+  lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showPhoto(currentPhoto - 1));
+  lightbox.querySelector('.lightbox-next').addEventListener('click', () => showPhoto(currentPhoto + 1));
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) closeImage(); });
+  document.addEventListener('keydown', event => {
+    if (!lightbox.classList.contains('open')) return;
+    if (event.key === 'Escape') closeImage();
+    if (event.key === 'ArrowLeft') showPhoto(currentPhoto - 1);
+    if (event.key === 'ArrowRight') showPhoto(currentPhoto + 1);
+  });
 </script>
 
 </body>
